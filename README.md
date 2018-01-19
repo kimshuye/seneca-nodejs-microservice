@@ -15,6 +15,8 @@ Seneca is a microservices toolkit for Node.js. It helps you write clean, organiz
 2. hello เอาชื่อมาส่งข้อความกลับไปว่า Hello ‘...'
 
 
+================== commend line =======================
+
 Install
 
 //interface service
@@ -27,9 +29,9 @@ npm init
 
 npm install seneca express body-parser --save
 
+================== commend line =======================
 
-
-//plus service
+//plus service commend line
 
 mkdir plus
 
@@ -41,6 +43,7 @@ npm install seneca --save
 
 Implement Seneca
 
+================== Back end code =======================
 
 //interface-service
 
@@ -69,6 +72,7 @@ app.listen(3000, function() {
 
 });
 
+=========================================
 
 จาก Code ข้างบนจะเห็นว่าก็ใช้ express ธรรมดาสิ่งที่อยากให้โฟกัสก็คือ
 
@@ -83,6 +87,7 @@ seneca.client().act({service: 'hello', name: name}, (err, result) => {
 
 
 คำสั่ง
+
 
 seneca.client().act({service: 'hello', name: name}); 
 
@@ -101,8 +106,10 @@ seneca.client().act({service: 'hello', name: name});
 
 คือการ handle สิ่งที่ตอบกลับมา 
 
+
 ต่อมาเราจะมาดูในส่วนของ Microservice hello กันนะครับ
 
+================== Service code =======================
 
 //hello service
 
@@ -116,6 +123,9 @@ let hello = (msg, reply) => {
 
 
 seneca.add('service:hello', hello).listen();
+
+
+=========================================
 
 
 คำสั่ง
@@ -139,6 +149,9 @@ seneca.add('service:hello', hello).listen();
 หากต้องการ fix port, protocol, ip ก็สามารถทำได้ดังนี้
 
 
+=========================================
+
+
 //interface service
 
 .client({ port: 8080, host: '192.168.0.2',type: 'http' })
@@ -148,6 +161,8 @@ seneca.add('service:hello', hello).listen();
 
 .listen({ port: 8080, host: '192.168.0.2',type: 'http' })
 
+
+=========================================
 
 
 นอกจากนี้ seneca.js ยังมีลูกเล่น และ plugin 
